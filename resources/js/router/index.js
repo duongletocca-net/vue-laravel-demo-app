@@ -24,12 +24,12 @@ const routes = [
         component: About,
     },
     {
-        path: "/",
+        path: "/crud",
         name: "Crud",
         component: Crud,
         children: [
             {
-                path: "/crud",
+                path: "",
                 name: "crud.list",
                 component: CrudList
             },
@@ -39,7 +39,7 @@ const routes = [
                 component: CrudCreate
             },
             {
-                path: "/crud/edit",
+                path: "/crud/:id/edit",
                 name: "crud.edit",
                 component: CrudEdit
             }

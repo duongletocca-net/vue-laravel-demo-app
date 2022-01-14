@@ -14,7 +14,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-        return Food::all();
+        return Food::with('prime')->latest()->paginate(10);
     }
 
     /**
@@ -35,7 +35,8 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+        return $request->all();
     }
 
     /**

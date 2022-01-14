@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrimeTable extends Migration
+class CreatePrimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePrimeTable extends Migration
      */
     public function up()
     {
-        Schema::create('prime', function (Blueprint $table) {
+        Schema::create('primes', function (Blueprint $table) {
             $table->id();
             $table->integer('food_id');
-            $table->integer('price_usd');
-            $table->integer('price_nok');
+            $table->integer('prime_usd');
+            $table->integer('prime_nok');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreatePrimeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prime');
+        Schema::dropIfExists('primes');
     }
 }

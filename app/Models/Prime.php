@@ -14,8 +14,8 @@ class Prime extends Model
 
     protected $fillable = [
         'food_id',
-        'price_usd',
-        'price_nok',
+        'prime_usd',
+        'prime_nok',
     ];
 
     public function food() {

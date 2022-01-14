@@ -6,7 +6,7 @@
 import CrudNavs from '../components/CrudNavs.vue'
 export default {
     components: {
-        CrudNavs
-    }
+        CrudNavs,
+    },
 }
 </script>

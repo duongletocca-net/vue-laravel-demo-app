@@ -1,8 +1,8 @@
 import { createStore } from "vuex";
+import Food from './modules/food'
 
 export default createStore({
-    state: {},
-    mutations: {},
-    actions: {},
-    modules: {},
+    modules: {
+        Food
+    }
 });

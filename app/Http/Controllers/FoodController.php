@@ -14,7 +14,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-        return Food::with('prime')->latest()->paginate(10);
+        return Food::latest()->paginate(10);
     }
 
     /**

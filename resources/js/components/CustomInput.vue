@@ -3,6 +3,7 @@
         {{ label }}
         <input
             :type="type"
+            :placeholder="placeholder"
             v-model="inputValue"
         >
     </label>
@@ -10,7 +11,7 @@
 
 <script>
 export default {
-    props: ['label', 'type', 'modelValue', 'radio'],
+    props: ['label', 'type', 'modelValue', 'placeholder'],
     computed: {
         inputValue: {
             get() {

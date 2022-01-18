@@ -19616,7 +19616,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['label', 'type', 'modelValue', 'radio'],
+  props: ['label', 'type', 'modelValue', 'placeholder'],
   computed: {
     inputValue: {
       get: function get() {
@@ -19769,7 +19769,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "",
         file: "",
         prime_usd: "",
-        prime_nok: "",
         type: "",
         checkbox: [],
         select: ""
@@ -19777,23 +19776,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       customInput: [{
         label: 'Product Name',
         value: "",
-        type: 'text'
+        type: 'text',
+        placeholder: ""
+      }, {
+        label: 'Prime',
+        value: "",
+        type: 'number',
+        placeholder: "JPY"
       }],
       customFile: [{
         label: 'Product Image',
         value: "",
         type: "file"
-      }],
-      customNumber: [{
-        label: 'Prime',
-        options: [{
-          placeholder: 'USD',
-          value: ""
-        }, {
-          placeholder: 'NOK',
-          value: ""
-        }],
-        type: "number"
       }],
       customRadio: [{
         label: 'Type',
@@ -19843,19 +19837,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)(['addFood'])), {}, {
+    fileSelected: function fileSelected(event) {
+      this.inputs.file = event.target.files[0];
+    },
     onSubmit: function onSubmit() {
       var _this = this;
 
-      this.customInput.forEach(function (element) {
-        _this.inputs.name = element.value;
-      });
-      this.customFile.forEach(function (element) {
-        _this.inputs.file = element.value;
-      });
-      this.customNumber.forEach(function (element) {
-        _this.inputs.prime_usd = element.options[0].value;
-        _this.inputs.prime_nok = element.options[1].value;
-      });
+      this.inputs.name = this.customInput[0].value;
+      this.inputs.prime_usd = this.customInput[1].value;
       this.customRadio.forEach(function (element) {
         _this.inputs.type = element.picked;
       });
@@ -20099,12 +20088,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = ["type"];
+var _hoisted_1 = ["type", "placeholder"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.label) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: $props.type,
+    placeholder: $props.placeholder,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $options.inputValue = $event;
     })
@@ -20527,7 +20517,14 @@ var _hoisted_3 = {
   "class": "col-sm-6"
 };
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  type: "number",
+  placeholder: "USD"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "form-group row"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-sm-10"
@@ -20540,10 +20537,6 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_CustomInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CustomInput");
 
-  var _component_CustomFile = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CustomFile");
-
-  var _component_CustomNumber = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CustomNumber");
-
   var _component_CustomRadio = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CustomRadio");
 
   var _component_CustomCheckbox = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CustomCheckbox");
@@ -20551,9 +20544,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_CustomSelect = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CustomSelect");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.onSubmit && $options.onSubmit.apply($options, arguments);
-    }, ["prevent"]))
+    }, ["prevent"])),
+    enctype: "multipart/form-data"
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.customInput, function (input, i) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_CustomInput, {
       key: i,
@@ -20562,46 +20556,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return input.value = $event;
       },
       label: input.label,
-      type: input.type
+      type: input.type,
+      placeholder: input.placeholder
     }, null, 8
     /* PROPS */
-    , ["modelValue", "onUpdate:modelValue", "label", "type"]);
+    , ["modelValue", "onUpdate:modelValue", "label", "type", "placeholder"]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.customFile, function (input, i) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_CustomFile, {
-      key: i,
-      modelValue: input.value,
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return input.value = $event;
-      },
-      label: input.label,
-      type: input.type
-    }, null, 8
-    /* PROPS */
-    , ["modelValue", "onUpdate:modelValue", "label", "type"]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  )), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.customNumber, function (input, i) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_CustomNumber, {
-      key: i,
-      prime_usd: input.options[0].value,
-      "onUpdate:prime_usd": function onUpdatePrime_usd($event) {
-        return input.options[0].value = $event;
-      },
-      prime_nok: input.options[1].value,
-      "onUpdate:prime_nok": function onUpdatePrime_nok($event) {
-        return input.options[1].value = $event;
-      },
-      options: input.options,
-      label: input.label,
-      type: input.type
-    }, null, 8
-    /* PROPS */
-    , ["prime_usd", "onUpdate:prime_usd", "prime_nok", "onUpdate:prime_nok", "options", "label", "type"]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  )), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.customRadio, function (input, i) {
+  )), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "file",
+    onChange: _cache[0] || (_cache[0] = function () {
+      return $options.fileSelected && $options.fileSelected.apply($options, arguments);
+    })
+  }, null, 32
+  /* HYDRATE_EVENTS */
+  ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.customRadio, function (input, i) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_CustomRadio, {
       key: i,
       modelValue: input.picked,
@@ -20646,7 +20615,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["modelValue", "onUpdate:modelValue", "options", "label", "type"]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), _hoisted_4], 32
+  )), _hoisted_5], 32
   /* HYDRATE_EVENTS */
   )])])]);
 }
@@ -20720,17 +20689,13 @@ var _hoisted_4 = {
   scope: "row"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-success"
 }, "Edit")], -1
 /* HOISTED */
 );
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-danger"
 }, "Delete")], -1
 /* HOISTED */
@@ -20744,19 +20709,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(food.name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(food.prime, function (prime) {
-      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-        key: prime.id
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" USD: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(prime.prime_usd), 1
-      /* TEXT */
-      ), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" NOK: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(prime.prime_nok), 1
-      /* TEXT */
-      )]);
-    }), 128
-    /* KEYED_FRAGMENT */
-    ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.typeMap[food.type]), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(food.prime), 1
     /* TEXT */
-    ), _hoisted_6, _hoisted_7]);
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.typeMap[food.type]), 1
+    /* TEXT */
+    ), _hoisted_5, _hoisted_6]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])]);

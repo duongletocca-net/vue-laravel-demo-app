@@ -16,7 +16,9 @@ class CreateFoodTable extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('icon');
+            $table->integer('prime');
+            $table->string('icon_name');
+            $table->string('icon_path');
             $table->tinyInteger('type');
             $table->softDeletes();
             $table->timestamps();

@@ -2,32 +2,24 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <form @submit.prevent="onSubmit">
+                <form @submit.prevent="onSubmit" enctype="multipart/form-data">
                     <CustomInput
                         v-for="(input, i) in customInput"
                         :key="i"
                         v-model="input.value"
                         :label="input.label"
                         :type="input.type"
+                        :placeholder="input.placeholder"
                     />
+                    <input
+                        type="number"
+                        placeholder="USD"
+                    >
 
-                    <CustomFile
-                        v-for="(input, i) in customFile"
-                        :key="i"
-                        v-model="input.value"
-                        :label="input.label"
-                        :type="input.type"
-                    />
-
-                    <CustomNumber
-                        v-for="(input, i) in customNumber"
-                        :key="i"
-                        v-model:prime_usd="input.options[0].value"
-                        v-model:prime_nok="input.options[1].value"
-                        :options="input.options"
-                        :label="input.label"
-                        :type="input.type"
-                    />
+                    <input
+                        type="file"
+                        @change="fileSelected"
+                    >
 
                     <CustomRadio
                         v-for="(input, i) in customRadio"
@@ -89,7 +81,6 @@ export default {
                 name: "",
                 file: "",
                 prime_usd: "",
-                prime_nok: "",
                 type: "",
                 checkbox: [],
                 select: "",
@@ -98,7 +89,14 @@ export default {
                 {
                     label: 'Product Name',
                     value: "",
-                    type: 'text'
+                    type: 'text',
+                    placeholder: ""
+                },
+                {
+                    label: 'Prime',
+                    value: "",
+                    type: 'number',
+                    placeholder: "JPY"
                 }
             ],
             customFile: [
@@ -106,22 +104,6 @@ export default {
                     label: 'Product Image',
                     value: "",
                     type: "file"
-                }
-            ],
-            customNumber: [
-                {
-                    label: 'Prime',
-                    options: [
-                        {
-                            placeholder: 'USD',
-                            value: ""
-                        },
-                        {
-                            placeholder: 'NOK',
-                            value: ""
-                        }
-                    ],
-                    type: "number"
                 }
             ],
             customRadio: [
@@ -193,19 +175,12 @@ export default {
         ...mapActions(
             ['addFood']
         ),
+        fileSelected(event){
+            this.inputs.file = event.target.files[0]
+        },
         onSubmit() {
-            this.customInput.forEach(element => {
-                this.inputs.name = element.value
-            });
-
-            this.customFile.forEach(element => {
-                this.inputs.file = element.value
-            });
-
-            this.customNumber.forEach(element => {
-                this.inputs.prime_usd = element.options[0].value
-                this.inputs.prime_nok = element.options[1].value
-            });
+            this.inputs.name = this.customInput[0].value
+            this.inputs.prime_usd = this.customInput[1].value
 
             this.customRadio.forEach(element => {
                 this.inputs.type = element.picked

@@ -15,12 +15,7 @@
                 <tr v-for="food in allFoods.data" :key="food.id">
                     <th scope="row">{{ food.id }}</th>
                     <td>{{ food.name }}</td>
-                    <td>
-                        <div v-for="prime in food.prime" :key="prime.id">
-                            USD: {{ prime.prime_usd }}<br>
-                            NOK: {{ prime.prime_nok }}
-                        </div>
-                    </td>
+                    <td>{{ food.prime }}</td>
                     <td>{{ typeMap[food.type] }}</td>
                     <td>
                         <button class="btn btn-success">Edit</button>
